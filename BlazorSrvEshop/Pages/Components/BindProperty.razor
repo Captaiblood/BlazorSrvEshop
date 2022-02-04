@@ -1,0 +1,16 @@
+﻿@page "/Components/BindProperty"
+
+<h3>BindProperty</h3>
+Name:@Product.Name<br />
+Active:@Product.IsActive<br />
+
+
+
+@code {
+    SrvEShopModels.SrvModels.Product Product = new()
+    {
+         Id=1,
+         Name="Nike 3500",
+         IsActive=true
+    };
+}
