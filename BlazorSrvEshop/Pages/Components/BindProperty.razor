@@ -3,8 +3,11 @@
 <h3>BindProperty</h3>
 Name:@Product.Name<br />
 Active:@Product.IsActive<br />
+Price:@Product.Price<br />
+Product: @(Product.IsActive?"Available":"Unavailable")<br /><br />
 
-
+Active : <input type="checkbox" @bind-value="@Product.IsActive" checked="@(Product.IsActive?"Checked":null)" />
+Price: <input type="number" @bind-value="@Product.Price" @bind-value:event="oninput" />
 
 @code {
     SrvEShopModels.SrvModels.Product Product = new()
