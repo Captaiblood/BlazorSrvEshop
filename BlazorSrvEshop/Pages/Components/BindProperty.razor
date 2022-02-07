@@ -1,4 +1,5 @@
 ﻿@page "/Components/BindProperty"
+@using SrvEShopModels.SrvModels
 
 <h3>BindProperty</h3>
 Name:@Product.Name<br />
@@ -6,14 +7,43 @@ Active:@Product.IsActive<br />
 Price:@Product.Price<br />
 Product: @(Product.IsActive?"Available":"Unavailable")<br /><br />
 
+Product Selected: @selectedProperty
+@if (!String.IsNullOrEmpty(selectedProperty))
+{
+   
+  <p>Property Value: @Product.productProperties.FirstOrDefault(p=> p.Key==selectedProperty).Value </p>
+ 
+}
+
+
 Active : <input type="checkbox" @bind-value="@Product.IsActive" checked="@(Product.IsActive?"Checked":null)" />
 Price: <input type="number" @bind-value="@Product.Price" @bind-value:event="oninput" />
+Product Properties:
+<select @bind="selectedProperty">
+    @foreach (var item in Product.productProperties)
+    {
+        <option value="@item.Key">@item.Key</option>
+    }
+
+</select>
 
 @code {
+
+    private string selectedProperty = "";
+
     SrvEShopModels.SrvModels.Product Product = new()
-    {
-         Id=1,
-         Name="Nike 3500",
-         IsActive=true
+        {
+            Id = 1,
+            Name = "Nike 3500",
+            IsActive = true,
+            Price = 12.99M,
+            productProperties = new List<ProductProperties>()
+            {
+                new ProductProperties{Id =1 , Key="Colour", Value="Yello"},
+                new ProductProperties{Id=2, Key="Flavor", Value="Mango"},
+                new ProductProperties{Id=3, Key="Size" ,Value="20oz"}
+
+            } 
+
     };
 }

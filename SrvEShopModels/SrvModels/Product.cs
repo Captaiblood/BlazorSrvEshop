@@ -10,7 +10,8 @@ namespace SrvEShopModels.SrvModels
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public bool IsActive { get; set; }
+        public IList<ProductProperties> productProperties { get; set; } = new List<ProductProperties>();
     }
 }
