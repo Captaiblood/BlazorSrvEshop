@@ -10,9 +10,17 @@ Product: @(Product.IsActive?"Available":"Unavailable")<br /><br />
 Product Selected: @selectedProperty
 @if (!String.IsNullOrEmpty(selectedProperty))
 {
-   
-  <p>Property Value: @Product.productProperties.FirstOrDefault(p=> p.Key==selectedProperty).Value </p>
- 
+    @* <p>Property Value: @Product.productProperties.Where(p=> p.Key==selectedProperty).Select(s=>s.Value) </p>*@
+    var prodPropertyList = Product.productProperties.Where(p=> p.Key==selectedProperty).Select(s=>s.Value).ToString();
+
+    //null referance 
+    @*<p>Property Value: @Product.productProperties.FirstOrDefault(p=> p.Key==selectedProperty).Value.ToString() </p>*@
+
+    @if (prodPropertyList != null)
+    {
+        <p>Property Value: @prodPropertyList.First() </p>
+    }
+        
 }
 
 
