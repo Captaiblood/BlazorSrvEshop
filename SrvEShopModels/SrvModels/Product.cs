@@ -12,6 +12,6 @@ namespace SrvEShopModels.SrvModels
         public string? Name { get; set; }
         public decimal Price { get; set; }
         public bool IsActive { get; set; }
-        public IList<ProductProperties> productProperties { get; set; } = new List<ProductProperties>();
+        public List<ProductProperties> ProductProperties { get; set; } = new List<ProductProperties>();
     }
 }

@@ -1,0 +1,48 @@
+﻿@using SrvEShopModels.SrvModels;
+<div class="bg-light border p-4 col-6">
+    <h4 class="text-secondary">Product - @Product.Id</h4>
+    Add To Favorite <input type="checkbox" @onchange="FavUpdated" /> <br />
+    Name - @Product.Name<br>
+    Show Properties :
+    <input type="checkbox" @bind-value="Product.IsActive" checked="@(Product.IsActive?"checked":null)" />
+
+    @if (Product.IsActive)
+    {
+        @foreach (var prodProp in Product.ProductProperties)
+        {
+            <p>@prodProp.Key - @prodProp.Value</p>
+        }
+    }
+    <br />
+    @*Call the shares componenet which is used as partial view *@
+
+    <_EditDeleteButton IsActive="@Product.IsActive">
+    </_EditDeleteButton>
+</div>
+
+@code {
+    [Parameter]
+    public Product Product { get; set; } = new Product();
+    //In parent compoenet if we look at the method FavSelectedCountUpdate
+    // it excepts bool. protected void FavSelectedCountUpdate(bool isSelected)
+    // which is passed in parent to child compoenet like in line below with two proerties
+    //one as product object and second as EventCallBack which invoke FavSelectedCountUpdate
+    // <_IndividualProductCompt Product="@prod" OnFavUpdated="FavSelectedCountUpdate">
+    // </_IndividualProductCompt>
+    [Parameter]
+    public EventCallback<bool> OnFavUpdated { get; set; }
+
+    //To invoke or call the method in parent componenet we need to pass the 
+    //method name in parent componenet as EventCallback to child componenet
+    // property OnFavUpdated. In this case in parent  OnFavUpdated="FavSelectedCountUpdate" 
+    // is passed to this method in child compnenet for call back. 
+    //When user click (Add To Favorite <input type="checkbox" @onchange="FavUpdated" />) 
+    //on chnage checkbox method below is called (FavUpdated) which call back
+    //method FavSelectedCountUpdate in parent componeent to update the total count of Favorite
+    //products selected
+    private async Task FavUpdated(ChangeEventArgs changeEventArgs)
+    {
+       if (changeEventArgs.Value is bool) // handel unboxing null referance
+       await OnFavUpdated.InvokeAsync((bool)changeEventArgs.Value);
+    }
+}

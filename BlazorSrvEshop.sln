@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSrvEshop", "BlazorSrvEshop\BlazorSrvEshop.csproj", "{95A929D2-D74C-480B-BDE4-C137E3E2D0A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebClientEShop", "..\BlazorWebClientEShop\BlazorWebClientEShop.csproj", "{9283A2B1-7F94-49FF-9D26-752D93BBF745}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebClientEShop", "..\BlazorWebClientEShop\BlazorWebClientEShop.csproj", "{9283A2B1-7F94-49FF-9D26-752D93BBF745}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SrvEShopModels", "SrvEShopModels\SrvEShopModels.csproj", "{8297B6EB-A060-47BA-BDA2-A936D7A3E9B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SrvEShopModels", "SrvEShopModels\SrvEShopModels.csproj", "{8297B6EB-A060-47BA-BDA2-A936D7A3E9B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
