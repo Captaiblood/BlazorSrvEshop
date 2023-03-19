@@ -2,11 +2,15 @@
 @using SrvEShopModels.SrvModels;
 <h3 class="text-primary">ProductListCompt</h3>
 <p> Favourites Total :@SelectedFavCount</p>
+<p>Last Selected Product : @LastSelectedProduct</p>
 <div class="border p-4 mt-4" style="background-color:azure">
     <div class="row">
         @foreach (var prod in Products)
         {
-            <_IndividualProductCompt Product="@prod" OnFavUpdated="FavSelectedCountUpdate"></_IndividualProductCompt>
+            <_IndividualProductCompt Product="@prod"
+                                 OnFavUpdated="FavSelectedCountUpdate"
+                                 OnLastSelectedProductChnage="ProductSelectedUpdate">
+            </_IndividualProductCompt>
         }
 
     </div>
@@ -18,6 +22,7 @@
     ICollection<Product> Products = new List<Product>();
 
     private int SelectedFavCount { get; set; } = 0;
+    private string LastSelectedProduct { get; set; } = string.Empty;
 
     protected override void OnInitialized()
     {
@@ -53,15 +58,15 @@
         base.OnInitialized();
     }
 
-    //How to call method in parent componenet from a clild componenet 
-    // becasue Add To Favorite check box is in child component. But we 
+    //How to call method in parent componenet from a clild componenet
+    // becasue Add To Favorite check box is in child component. But we
     //want to update in parent <p> Favourites Total :@SelectedFavCount</p>
     //To achive this we can impliment event call back.
-    //Lets call this method in parent componenet which updates 
-    // <p> Favourites Total :@SelectedFavCount</p>  count of total favrouit 
+    //Lets call this method in parent componenet which updates
+    // <p> Favourites Total :@SelectedFavCount</p>  count of total favrouit
     // procduct select by user in child componenet.
     //To make this happen the clild component should use event call back
-    //avaialable in blazore. Example in _IndividualProductCompt  
+    //avaialable in blazore. Example in _IndividualProductCompt
     // Add To Favorite <input type="checkbox" @onchange="FavUpdated" /> <br />
     // check box is using onchange
     protected void FavSelectedCountUpdate(bool isSelected)
@@ -75,5 +80,10 @@
             SelectedFavCount--;
         }
 
+    }
+
+    protected void ProductSelectedUpdate(string productName)
+    {
+        LastSelectedProduct = productName;
     }
 }

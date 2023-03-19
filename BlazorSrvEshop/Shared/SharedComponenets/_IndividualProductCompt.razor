@@ -1,5 +1,6 @@
 ﻿@using SrvEShopModels.SrvModels;
-<div class="bg-light border p-4 col-6">
+
+<div class="bg-light border p-4 col-6" @onclick="(args)=>LastSelectedProductSUpdate(args , Product.Name)">
     <h4 class="text-secondary">Product - @Product.Id</h4>
     Add To Favorite <input type="checkbox" @onchange="FavUpdated" /> <br />
     Name - @Product.Name<br>
@@ -32,6 +33,9 @@
     [Parameter]
     public EventCallback<bool> OnFavUpdated { get; set; }
 
+    [Parameter]
+    public EventCallback<string> OnLastSelectedProductChnage{ get; set; }
+
     //To invoke or call the method in parent componenet we need to pass the 
     //method name in parent componenet as EventCallback to child componenet
     // property OnFavUpdated. In this case in parent  OnFavUpdated="FavSelectedCountUpdate" 
@@ -42,7 +46,15 @@
     //products selected
     private async Task FavUpdated(ChangeEventArgs changeEventArgs)
     {
-       if (changeEventArgs.Value is bool) // handel unboxing null referance
-       await OnFavUpdated.InvokeAsync((bool)changeEventArgs.Value);
+        if (changeEventArgs.Value is bool) // handel unboxing null referance
+            await OnFavUpdated.InvokeAsync((bool)changeEventArgs.Value);
     }
+
+    private async Task LastSelectedProductSUpdate(MouseEventArgs  mouseEventArgs, string name)
+    {
+        if (!string.IsNullOrEmpty(name))
+            await OnLastSelectedProductChnage.InvokeAsync(name);
+    }
+
+
 }
