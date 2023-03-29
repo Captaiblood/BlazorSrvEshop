@@ -1,0 +1,21 @@
+﻿
+<div>
+    <div class="alert alert-info"><b>@Title</b>
+    
+        @if (ChildFregmentContent != null)
+        {
+            <span> @ChildFregmentContent </span>
+        }
+    
+    </div>
+
+    <button class="btn btn-danger" @onclick="OnButtonChickChildFragment"> Click Button</button>
+</div>
+@code {
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+    [Parameter]
+    public RenderFragment? ChildFregmentContent { get; set; }
+    [Parameter]
+    public EventCallback OnButtonChickChildFragment { get; set; }
+}

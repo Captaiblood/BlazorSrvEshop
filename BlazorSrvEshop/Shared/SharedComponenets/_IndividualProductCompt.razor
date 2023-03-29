@@ -3,7 +3,14 @@
 <div class="bg-light border p-4 col-6" @onclick="(args)=>LastSelectedProductSUpdate(args , Product.Name)">
     <h4 class="text-secondary">Product - @Product.Id</h4>
     Add To Favorite <input type="checkbox" @onchange="FavUpdated" /> <br />
+   
     Name - @Product.Name<br>
+
+    @if (FirstFragment != null && SecondFragment !=null)
+    {
+        <p>RF from Parent = @FirstFragment @SecondFragment</p>
+    }
+
     Show Properties :
     <input type="checkbox" @bind-value="Product.IsActive" checked="@(Product.IsActive?"checked":null)" />
 
@@ -55,6 +62,11 @@
         if (!string.IsNullOrEmpty(name))
             await OnLastSelectedProductChnage.InvokeAsync(name);
     }
+
+    [Parameter]
+    public RenderFragment? FirstFragment { get; set; }
+    [Parameter]
+    public RenderFragment? SecondFragment{ get; set; }
 
 
 }

@@ -1,0 +1,25 @@
+﻿@page "/Components/ParentComponentFragmentExample"
+<h3>Parent Child Fragmen tExample</h3>
+
+<BlazorSrvEshop.Shared.ChildFragments._ChildFragmentComponent  OnButtonChickChildFragment="ShowMessage" Title="This message is passed as parameter 
+from parent to child component">
+<ChildFregmentContent>ABVC</ChildFregmentContent>
+</BlazorSrvEshop.Shared.ChildFragments._ChildFragmentComponent>
+
+@* We are rending fragment from parent which is passed to child compnonent and it gets remnerd same page.*@
+
+@*  <b>
+        In either case either some thing is passed as child parameter argumenr or as sime fragment value from parent they can be
+        proceed and rendered.
+    </b>*@
+
+    <p class="p-4 display-5">@messageToShow</p>
+@code {
+    public string messageToShow = "";
+
+    private void ShowMessage()
+    {
+        messageToShow = "Child button clicked to render this text in parent.";
+    }
+
+}

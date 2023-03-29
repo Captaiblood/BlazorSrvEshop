@@ -11,4 +11,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Componenets\" />
+    <Folder Include="wwwroot\Js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Shared\Collapsible.razor" />
+  </ItemGroup>
+
 </Project>
